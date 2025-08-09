@@ -26,7 +26,12 @@ StartupEvents.registry('minecraft:item', event => {
 
 ## 物品纹理
 
+- 将物品纹理放置在kubejs/assets/textures/item/目录，命名为copper_helmet.png
+
+## 物品模型
+
 - 创建物品模型，在kubejs/assets/models/item目录下创建copper_helmet.json。
+- 需要为每种质地的纹理创建模型。
 - textures标识盔甲物品本身的纹理id。
 - overrides标识不同锻造模板类型下使用的模型id。
 
@@ -103,12 +108,13 @@ StartupEvents.registry('minecraft:item', event => {
 }
 ```
 
-:::
+::: 
 
-- 依次创建上文overrides列表中的模型，以石英质纹饰为例
-- layer0标识了铜头盔的贴图id
+- 创建有纹饰的铜头盔模型，以石英质为例
+- layer0标识了铜头盔的纹理id
+- layer0标识了石英质物品纹理id
 
-:::
+::: code-group
 
 ```json
 {
@@ -124,15 +130,15 @@ StartupEvents.registry('minecraft:item', event => {
 
 ## 盔甲纹理
 
-- 将准备好的盔甲贴图放在kubejs/assets/textures/models/armor/目录下，分别命名为copper_layer_1与copper_layer_2（可参考minecraft同目录下的贴图）。
-- 不需要为每种纹饰准备盔甲贴图。
+- 将准备好的盔甲纹理放在kubejs/assets/textures/models/armor/目录下，分别命名为copper_layer_1与copper_layer_2（可参考minecraft同目录下的贴图）。
+- 不需要为每种纹饰准备盔甲纹理。
 
 ## 物品标签
 
 - 在server_scripts内编写脚本，为刚刚创建的盔甲物品添加标签。
 - 除盔甲类物品的共有标签外，每个部位的盔甲物品还有各自的标签。
 
-::: 
+::: code-group
 
 ```js [KubeJS]
 ServerEvents.tags('minecraft:item', event => {
@@ -150,7 +156,7 @@ ServerEvents.tags('minecraft:item', event => {
 - 在server_scripts内编写脚本，为刚刚创建的铜头盔添加有序配方。
 - 这里使用了forge铜锭标签。
 
-::: 
+::: code-group
 
 ```js [KubeJS]
 ServerEvents.recipes(event => {
